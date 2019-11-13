@@ -6,7 +6,7 @@ CREATE TABLE Customers(
     LastName VARCHAR(50),
     Gender VARCHAR,
     Address VARCHAR(200),
-    Phone INT(10),
+    Phone BIGINT,
     Email VARCHAR(100),
     City VARCHAR(20),
     Country VARCHAR(50)
