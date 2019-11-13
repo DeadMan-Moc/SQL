@@ -254,7 +254,7 @@ customerid	firstname	lastname	gender	address	phone	email	country	city
 
 
 -- 
-SELECT * FROM Products WHERE description > 'Turnable front wheels steering function';
+SELECT * FROM Products WHERE Desrciption > 'Turnable front wheels steering function';
 --results
 productid	productname	 desrciption	                            amount
 2	        Classic Car	 Turnable front wheels, steering function	550.75
