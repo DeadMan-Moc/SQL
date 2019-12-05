@@ -44,26 +44,6 @@ VALUES ('Lesly','Cronje','LesC@gmail.com','Clerk');
 INSERT INTO Employees(FirstName, LastName, Email, JobTitle)
 VALUES ('Gideon','Maduku','m@gmail.com','Accountant');
 
-
-CREATE TABLE Orders (
-    OrderID SERIAL PRIMARY KEY,
-    ProductID INTEGER REFERENCES Products(ProductID),
-    PaymentID INTEGER REFERENCES Payments(PaymentID),
-    FulfilledByEmployeeID INTEGER REFERENCES Employees(EmployeeID),
-    DateRequired DATE NOT NULL,
-    DateShipped DATE,
-    status VARCHAR(20)
-);
-
---Inserting data into orders table
-
-INSERT INTO Orders (DateRequired ,DateShipped,status)
-VALUES ('05-09-2018', NULL,'Not shipped');
-INSERT INTO Orders (DateRequired ,DateShipped,status)
-VALUES ('04-09-2018','03-09-2018','Shipped');
-INSERT INTO Orders (DateRequired ,DateShipped,status)
-VALUES ('06-09-2018', NULL,'Not shipped');
-
 CREATE TABLE Payments(
     PaymentID SERIAL PRIMARY KEY,
     CustomerId INTEGER REFERENCES Customers(CustomerID),
@@ -93,6 +73,25 @@ INSERT INTO Products(ProductName,Desrciption,Amount)
 VALUES ('Classic Car','Turnable front wheels, steering function',550.75);
 INSERT INTO Products(ProductName,Desrciption,Amount)
 VALUES ('Sports car','Turnable front wheels, steering function',700.60)
+
+CREATE TABLE Orders (
+    OrderID SERIAL PRIMARY KEY,
+    ProductID INTEGER REFERENCES Products(ProductID),
+    PaymentID INTEGER REFERENCES Payments(PaymentID),
+    FulfilledByEmployeeID INTEGER REFERENCES Employees(EmployeeID),
+    DateRequired DATE NOT NULL,
+    DateShipped DATE,
+    status VARCHAR(20)
+);
+
+--Inserting data into orders table
+
+INSERT INTO Orders (DateRequired ,DateShipped,status)
+VALUES ('05-09-2018', NULL,'Not shipped');
+INSERT INTO Orders (DateRequired ,DateShipped,status)
+VALUES ('04-09-2018','03-09-2018','Shipped');
+INSERT INTO Orders (DateRequired ,DateShipped,status)
+VALUES ('06-09-2018', NULL,'Not shipped');
 
 -- Select everything in customers table
 SELECT * FROM Customers;
