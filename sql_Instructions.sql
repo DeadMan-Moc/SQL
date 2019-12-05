@@ -1,7 +1,7 @@
 CREATE DATABASE umuzi;
 
 CREATE TABLE Customers(
-    CustomerID SERIAL,
+    CustomerID SERIAL PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Gender VARCHAR,
@@ -25,8 +25,10 @@ VALUES('Charl', 'Muller', 'Male', '290 Dorset Ecke', +44856872553, 'Charl.muller
 INSERT INTO Customers(FirstName, LastName, Gender, Address, Phone, Email, City, Country)
 VALUES('Julia', 'Stein', 'Female', '2 Wernerring', +448672445058, 'Js234@yahoo.com', 'Frankfurt', 'Germany');
 
+-- Creating table employees
+
 CREATE TABLE Employees(
-    EmployeeID SERIAL,
+    EmployeeID SERIAL PRIMARY KEY,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     Email VARCHAR(100),
@@ -37,20 +39,23 @@ CREATE TABLE Employees(
 
 INSERT INTO Employees(FirstName, LastName, Email, JobTitle)
 VALUES ('Kani','Matthew','mat@gmail.com','Manager');
-INSERT INTO Employees(EmployeeID, FirstName, LastName, Email, JobTitle)
+INSERT INTO Employees(FirstName, LastName, Email, JobTitle)
 VALUES ('Lesly','Cronje','LesC@gmail.com','Clerk');
-INSERT INTO Employees(EmployeeID, FirstName, LastName, Email, JobTitle)
+INSERT INTO Employees(FirstName, LastName, Email, JobTitle)
 VALUES ('Gideon','Maduku','m@gmail.com','Accountant');
 
+
 CREATE TABLE Orders (
-    OrderID SERIAL,
-    ProductID INTEGER REFERENCES Poducts(ProductID),
+    OrderID SERIAL PRIMARY KEY,
+    ProductID INTEGER REFERENCES Products(ProductID),
     PaymentID INTEGER REFERENCES Payments(PaymentID),
-    FulfilledByEmployeeID SERIAL,
+    FulfilledByEmployeeID INTEGER REFERENCES Employees(EmployeeID),
     DateRequired DATE NOT NULL,
     DateShipped DATE,
     status VARCHAR(20)
 );
+
+--Inserting data into orders table
 
 INSERT INTO Orders (DateRequired ,DateShipped,status)
 VALUES ('05-09-2018', NULL,'Not shipped');
@@ -60,7 +65,7 @@ INSERT INTO Orders (DateRequired ,DateShipped,status)
 VALUES ('06-09-2018', NULL,'Not shipped');
 
 CREATE TABLE Payments(
-    PaymentID SERIAL,
+    PaymentID SERIAL PRIMARY KEY,
     CustomerId INTEGER REFERENCES Customers(CustomerID),
     PaymentDate DATE NOT NULL, 
     Amount DECIMAL
@@ -74,7 +79,7 @@ INSERT INTO Payments(PaymentDate, Amount)
 VALUES ('03-09-2018',700.60);
 
 CREATE TABLE Products(
-    ProductId SERIAL,
+    ProductId SERIAL PRIMARY KEY,
     ProductName VARCHAR(100),
     Desrciption VARCHAR(300),
     Amount DECIMAL
