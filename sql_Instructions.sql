@@ -1,4 +1,5 @@
 CREATE DATABASE umuzi;
+--Creating customers table 
 
 CREATE TABLE Customers(
     CustomerID SERIAL PRIMARY KEY,
@@ -44,6 +45,8 @@ VALUES ('Lesly','Cronje','LesC@gmail.com','Clerk');
 INSERT INTO Employees(FirstName, LastName, Email, JobTitle)
 VALUES ('Gideon','Maduku','m@gmail.com','Accountant');
 
+--Creating payments table
+
 CREATE TABLE Payments(
     PaymentID SERIAL PRIMARY KEY,
     CustomerId INTEGER REFERENCES Customers(CustomerID),
@@ -51,12 +54,16 @@ CREATE TABLE Payments(
     Amount DECIMAL
 );
 
+--Inaerting data into Payments
+
 INSERT INTO Payments(PaymentDate, Amount)
 VALUES ('01-09-2018', 150.75);
 INSERT INTO Payments(PaymentDate, Amount)
 VALUES ('03-09-2018',150.75);
 INSERT INTO Payments(PaymentDate, Amount)
 VALUES ('03-09-2018',700.60);
+
+--Creating orders Products table
 
 CREATE TABLE Products(
     ProductId SERIAL PRIMARY KEY,
@@ -73,6 +80,8 @@ INSERT INTO Products(ProductName,Desrciption,Amount)
 VALUES ('Classic Car','Turnable front wheels, steering function',550.75);
 INSERT INTO Products(ProductName,Desrciption,Amount)
 VALUES ('Sports car','Turnable front wheels, steering function',700.60)
+
+--Creating orders table
 
 CREATE TABLE Orders (
     OrderID SERIAL PRIMARY KEY,
